@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package OrdersPackage;
+
+service Order{ 
+    rpc readOrders(VoidNoParams) returns (OrderItems);
+    rpc createOrder(OrderItemWithOutId) returns (RequestStatus);
+    rpc readOrderById(OrderId) returns (OrderItemWithId);
+    rpc updateOrderById(OrderItemWithOutId) returns (RequestStatus);
+    rpc deleteOrderById(OrderId) returns (RequestStatus);
+}
+
+message VoidNoParams{}
+
+message OrderId{
+    required string _id = 1;
+}
+
+message OrderItemWithOutId{ 
+    repeated InventoryItem inventory = 1;
+}
+
+message InventoryItem{
+    required string productName=1;
+    required int32 quantity = 2;
+}
+
+message OrderItemWithId{
+    required string _id = 1;
+    required string buyerName = 2;
+    required string buyerEmail = 3;
+    repeated InventoryItem inventory = 4;
+    repeated string timeStamps = 5;
+}
+
+message OrderItems{
+    repeated OrderItemWithId orders = 1;
+}
+
+message RequestStatus{
+    required string status = 1;
+}

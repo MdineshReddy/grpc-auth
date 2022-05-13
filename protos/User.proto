@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package UsersPackage;
+
+service User{ 
+    rpc registerUser(UserInfo) returns (UserToken);
+    rpc loginUser(LoginCreds) returns (UserToken);
+    // rpc deleteUser(UserId) returns (RequestStatus);
+}
+
+message VoidNoParams{}
+
+message UserInfo{
+    required string name = 1;
+    required string email = 2;
+    required string password = 3;
+}
+
+message LoginCreds{
+    required string email = 1;
+    required string password = 2;
+}
+
+message UserToken{
+    required string token = 1; 
+}
+
+message UserId{
+    required string _id = 1; 
+}
+ 
+message RequestStatus{
+    required string status = 1;
+}
