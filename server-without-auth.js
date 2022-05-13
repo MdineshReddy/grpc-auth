@@ -8,6 +8,7 @@ const {
   updateOrderById,
   deleteOrderById,
 } = require("./methods/OrderMethods");
+require("dotenv").config();
 
 // load the product proto file
 const packageDefinition = protoLoader.loadSync("./protos/Order.proto", {
@@ -40,9 +41,7 @@ server.addService(ordersPackage.Order.service, {
 });
 
 mongoose
-  .connect(
-    "mongodb://dinesh:1234@merndb-shard-00-00.gyjzj.mongodb.net:27017,merndb-shard-00-01.gyjzj.mongodb.net:27017,merndb-shard-00-02.gyjzj.mongodb.net:27017/grpc-test?ssl=true&replicaSet=atlas-x21qxe-shard-0&authSource=admin&retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
     // start the server
     console.log("Starting server on 0.0.0.0:8000:");

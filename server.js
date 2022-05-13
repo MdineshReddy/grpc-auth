@@ -1,6 +1,7 @@
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 const {
   readOrders,
@@ -68,9 +69,7 @@ server.addService(usersPackage.User.service, {
 });
 
 mongoose
-  .connect(
-    "mongodb://dinesh:1234@merndb-shard-00-00.gyjzj.mongodb.net:27017,merndb-shard-00-01.gyjzj.mongodb.net:27017,merndb-shard-00-02.gyjzj.mongodb.net:27017/grpc-test?ssl=true&replicaSet=atlas-x21qxe-shard-0&authSource=admin&retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URI)
   .then(() => {
     // start the server
     console.log("Starting server on 0.0.0.0:8000:");
