@@ -3,6 +3,8 @@ const User = require("../models/UserModel");
 const grpc = require("grpc");
 const JWT = require("jsonwebtoken");
 
+// (required for authentification)
+
 function authenticateRequest(call, callback) {
   const token = call.metadata.get("authorization")[0];
   try {

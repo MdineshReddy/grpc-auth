@@ -32,7 +32,7 @@ const orderGrpcObject = grpc.loadPackageDefinition(orderPackageDefinition);
 // Get our OrdersPackage from our Order.proto file
 const ordersPackage = orderGrpcObject.OrdersPackage;
 
-// load the user proto file
+// load the user proto file (required for authentification)
 const usersPackageDefinition = protoLoader.loadSync("./protos/User.proto", {
   keepCase: false,
   longs: String,

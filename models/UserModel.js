@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+// (required for authentification)
+
 const UserSchema = new mongoose.Schema(
   {
     name: {
